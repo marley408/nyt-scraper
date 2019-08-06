@@ -1,11 +1,25 @@
-body {
-  min-height: 100vh;
-}
-
-.App {
-  background-image: url(./images/abigail-keenan-8-s5QuUBtyM-unsplash.png);
-}
-
 .landing-page {
-  height: 100%;
+  background-image: url(./images/abigail-keenan-8-s5QuUBtyM-unsplash.png);
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 5em 2em;
+}
+
+@media only screen and (min-width: 480px) {
+  .landing-page {
+    min-height: 400px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .landing-page {
+    min-height: 500px;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .landing-page {
+    min-height: 600px;
+  }
 }

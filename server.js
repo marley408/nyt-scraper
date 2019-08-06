@@ -2,6 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./test/db');
 const authRoute = require('./routes/auth');
+const scrapeArticlesRoute = require('./routes/articles');
+
 const postRoute = require('./routes/post');
 
 const app = express();
@@ -17,11 +19,11 @@ app.use(
 );
 // allows us to accept json data into our API
 app.use(express.json({ extended: true }));
-app.use('/api/user', authRoute);
-app.use('/api/post', postRoute);
 
 // define routes
-app.get('/', (req, res) => res.send('Hello World!'));
+app.use('/api/user', authRoute);
+app.use('/api/articles', scrapeArticlesRoute);
+app.use('/api/post', postRoute);
 
 const PORT = 5000;
 

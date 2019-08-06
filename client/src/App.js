@@ -13,9 +13,9 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* <Switch>
+        <Switch>
           <Route exact path="/" component={LandingPage} />
-        </Switch> */}
+        </Switch>
       </div>
     </Router>
   );
