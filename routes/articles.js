@@ -82,4 +82,13 @@ router.post('/save', async (req, res) => {
   }
 });
 
+// GET route for displaying saved articles for a specfic user
+router.get('/saved-articles', async (req, res) => {
+  const user = await User.findById('5d48da6f18b7df0c9fd60cf8').populate(
+    'articles'
+  );
+
+  res.json(user.articles);
+});
+
 module.exports = router;

@@ -23,7 +23,7 @@ app.use(express.json({ extended: true }));
 // define routes
 app.use('/api/user', authRoute);
 app.use('/api/articles', scrapeArticlesRoute);
-app.use('/api/post', postRoute);
+// app.use('/api/post', postRoute);
 
 const PORT = 5000;
 
