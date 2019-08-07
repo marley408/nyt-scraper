@@ -69,7 +69,7 @@ router.post('/save', async (req, res) => {
     }
 
     const user = await User.findOneAndUpdate(
-      { _id: '5d48da6f18b7df0c9fd60cf8' },
+      { _id: '5d4a37a42b1dd905b9500ce0' },
       { $push: { articles: article } }
     );
 
@@ -84,11 +84,37 @@ router.post('/save', async (req, res) => {
 
 // GET route for displaying saved articles for a specfic user
 router.get('/saved-articles', async (req, res) => {
-  const user = await User.findById('5d48da6f18b7df0c9fd60cf8').populate(
+  const user = await User.findById('5d4a37a42b1dd905b9500ce0').populate(
     'articles'
   );
 
   res.json(user.articles);
+});
+
+// route for deleting an article
+router.delete('/delete', async (req, res) => {
+  const title = req.body.title;
+
+  try {
+    // find article by title
+    let article = await Article.findOne({ title });
+    // find user then remove article from collection
+    const user = await User.findOneAndUpdate(
+      { _id: '5d4a37a42b1dd905b9500ce0' },
+      { $pull: { articles: { $in: [article] } } }
+    );
+
+    console.log(user);
+
+    const response = {
+      message: 'Article successfully deleted',
+      id: article._id
+    };
+    return res.status(200).send(response);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;

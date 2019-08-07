@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from './components/navbar/Navbar';
-import LandingPage from './pages/LandingPage';
+import Landing from './pages/Landing';
 import {
   BrowserRouter as Router,
   Route,
@@ -14,7 +14,7 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/" component={Landing} />
         </Switch>
       </div>
     </Router>
