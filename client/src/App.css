@@ -4,7 +4,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   padding: 5em 2em;
-  height: 100vh;
+  height: auto;
   background-image: linear-gradient(
     to top,
     #c4c5c7 0%,

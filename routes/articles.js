@@ -43,7 +43,7 @@ router.get('/scrape', (req, res) => {
 
       // Log the results once you've looped through each of the elements found with cheerio
 
-      console.log(results);
+      // console.log(results);
       res.send(results);
     }
   });
@@ -68,12 +68,24 @@ router.post('/save', async (req, res) => {
       await article.save();
     }
 
-    const user = await User.findOneAndUpdate(
-      { _id: '5d4a37a42b1dd905b9500ce0' },
-      { $push: { articles: article } }
-    );
+    // check if user already has article saved. will return null if user does not
+    const user = await User.findById('5d4a37a42b1dd905b9500ce0');
 
-    console.log(user);
+    // grab all of the user's articles and then check to see if a specific article is in the array
+    const userArticles = user.articles;
+    const userWithArticle = userArticles.includes(article.id);
+
+    console.log(userWithArticle);
+
+    // if user doesnt have the article then add it to their collection
+    if (!userWithArticle) {
+      await user.updateOne({ $push: { articles: article } });
+    }
+
+    // const user = await User.findOneAndUpdate(
+    //   { _id: '5d4a37a42b1dd905b9500ce0' },
+    //   { $push: { articles: article } }
+    // );
 
     res.json(article);
   } catch (err) {

@@ -17,21 +17,27 @@ const Home = () => {
     fetchArticles();
   }, []);
 
-  const saveButton = () => {
-    fetch('/api/articles/saved-articles', {
+  const saveButton = async e => {
+    e.preventDefault();
+    console.log(e.target.parentNode);
+    const clickedArticle = e.target.parentNode;
+
+    await fetch('/api/articles/save', {
       mode: 'cors',
-      credentials: 'include',
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
         // 'auth-token': localStorage.getItem('token')
       },
       body: JSON.stringify({
-        title: articles.title,
-        summary: articles.summary,
-        link: articles.link
+        title: clickedArticle.querySelector('.card-title').textContent,
+        summary: clickedArticle.querySelector('.card-text').textContent,
+        link: clickedArticle.querySelector('a').href
       })
-    }).then(res => res.json());
+    });
+
+    // remove article after its saved
+    clickedArticle.remove();
   };
 
   return (
@@ -40,10 +46,10 @@ const Home = () => {
       <div className="card-container">
         {articles.map((articles, index) => {
           return (
-            <div className="container">
+            <div className="container" key={index}>
               <div className="row">
                 <div className="card col">
-                  <div key={index} className="card-body">
+                  <div className="card-body">
                     <h5 className="card-title">{articles.title}</h5>
                     <p className="card-text">{articles.summary}</p>
                     <a
@@ -54,13 +60,7 @@ const Home = () => {
                     >
                       View
                     </a>
-                    <button
-                      onClick={e => {
-                        e.preventDefault();
-                        saveButton();
-                      }}
-                      className="btn btn-danger"
-                    >
+                    <button onClick={saveButton} className="btn btn-danger">
                       Save
                     </button>
                   </div>
