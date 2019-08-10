@@ -66,6 +66,47 @@
   text-decoration: none;
 }
 
+.home-jumbotron {
+  background-image: url(./images/abigail-keenan-8-s5QuUBtyM-unsplash.png);
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* padding: 5em 2em; */
+  padding: 10em 8em;
+}
+
+.home-page-container {
+  background-image: linear-gradient(
+    to top,
+    #c4c5c7 0%,
+    #dcdddf 52%,
+    #ebebeb 100%
+  );
+
+  height: auto;
+}
+.saved-page-container {
+  background-image: linear-gradient(
+    to top,
+    #c4c5c7 0%,
+    #dcdddf 52%,
+    #ebebeb 100%
+  );
+
+  height: 100vh;
+}
+
+.card-container {
+  padding: 2em;
+}
+.card-container button {
+  margin-left: 5px;
+}
+
+.navbar {
+  background-color: black;
+}
+
 @media only screen and (min-width: 480px) {
   .landing-page-container {
     min-height: 400px;
