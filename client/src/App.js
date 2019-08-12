@@ -4,18 +4,21 @@ import Home from './pages/Home';
 import SavedArticles from './pages/SavedArticles';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { UserProvider } from './components/UserContext';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/saved" component={SavedArticles} />
-        </Switch>
-      </div>
-    </Router>
+    <UserProvider>
+      <Router>
+        <div className="App">
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/saved" component={SavedArticles} />
+          </Switch>
+        </div>
+      </Router>
+    </UserProvider>
   );
 }
 
