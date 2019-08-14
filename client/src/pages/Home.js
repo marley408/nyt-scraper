@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Navbar from '../components/Navbar';
+import { UserContext } from '../components/UserContext';
 import '../App.css';
 
 const Home = () => {
   const [articles, setArticles] = useState([]);
+
+  const context = useContext(UserContext);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -19,15 +22,15 @@ const Home = () => {
 
   const saveButton = async e => {
     e.preventDefault();
-    console.log(e.target.parentNode);
+    // console.log(e.target.parentNode);
     const clickedArticle = e.target.parentNode;
 
-    await fetch('/api/articles/save', {
+    await fetch(`/api/articles/save?userId=${context.id}`, {
       mode: 'cors',
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
-        // 'auth-token': localStorage.getItem('token')
+        'Content-Type': 'application/json',
+        'auth-token': localStorage.getItem('token')
       },
       body: JSON.stringify({
         title: clickedArticle.querySelector('.card-title').textContent,

@@ -1,6 +1,7 @@
 import React from 'react';
 import Landing from './pages/Landing';
 import Home from './pages/Home';
+import NotFound from './pages/NotFound';
 import SavedArticles from './pages/SavedArticles';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -15,6 +16,7 @@ function App() {
             <Route exact path="/" component={Landing} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/saved" component={SavedArticles} />
+            <Route component={NotFound} />
           </Switch>
         </div>
       </Router>

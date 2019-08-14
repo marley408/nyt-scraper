@@ -3,6 +3,7 @@ const request = require('request');
 const cheerio = require('cheerio');
 const User = require('../models/User');
 const Article = require('../models/Article');
+const verify = require('./verifyToken');
 
 // A GET route for scraping the nytimes website
 router.get('/scrape', (req, res) => {
@@ -50,7 +51,7 @@ router.get('/scrape', (req, res) => {
 });
 
 // Save an article
-router.post('/save', async (req, res) => {
+router.post('/save', verify, async (req, res) => {
   const { title, summary, link } = req.body;
 
   try {
@@ -69,7 +70,7 @@ router.post('/save', async (req, res) => {
     }
 
     // check if user already has article saved. will return null if user does not
-    const user = await User.findById('5d4a37a42b1dd905b9500ce0');
+    const user = await User.findById(req.query.userId);
 
     // grab all of the user's articles and then check to see if a specific article is in the array
     const userArticles = user.articles;
@@ -95,16 +96,14 @@ router.post('/save', async (req, res) => {
 });
 
 // GET route for displaying saved articles for a specfic user
-router.get('/saved-articles', async (req, res) => {
-  const user = await User.findById('5d4a37a42b1dd905b9500ce0').populate(
-    'articles'
-  );
+router.get('/saved-articles', verify, async (req, res) => {
+  const user = await User.findById(req.query.userId).populate('articles');
 
   res.json(user.articles);
 });
 
 // route for deleting an article
-router.delete('/delete', async (req, res) => {
+router.delete('/delete', verify, async (req, res) => {
   const title = req.body.title;
 
   try {
@@ -112,7 +111,7 @@ router.delete('/delete', async (req, res) => {
     let article = await Article.findOne({ title });
     // find user then remove article from collection
     const user = await User.findOneAndUpdate(
-      { _id: '5d4a37a42b1dd905b9500ce0' },
+      { _id: req.query.userId },
       { $pull: { articles: { $in: [article] } } }
     );
 

@@ -40,11 +40,11 @@ const Landing = () => {
       })
         .then(res => res.json())
         .then(data => {
-          clearLogInForm();
           if (data.token) {
             localStorage.setItem('token', data.token);
-            setSuccessfulLogin(true);
+            clearLogInForm();
             setId(data.userId);
+            setSuccessfulLogin(true);
           }
         })
         .catch(err => {
@@ -71,7 +71,7 @@ const Landing = () => {
     } else {
       fetch('/api/user/register', {
         mode: 'cors',
-        credentials: 'include',
+        // credentials: 'include',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -86,11 +86,11 @@ const Landing = () => {
       })
         .then(res => res.json())
         .then(data => {
-          clearRegisterForm();
           if (data.token) {
             localStorage.setItem('token', data.token);
-            setSuccessfulLogin(true);
+            clearRegisterForm();
             setId(data.userId);
+            setSuccessfulLogin(true);
           }
         });
     }

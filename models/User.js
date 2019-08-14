@@ -23,9 +23,7 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  articles: [
-    { type: mongoose.Schema.Types.ObjectId, ref: 'Article', unique: true }
-  ]
+  articles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Article' }]
 });
 
 module.exports = mongoose.model('User', userSchema);

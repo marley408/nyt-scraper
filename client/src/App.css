@@ -66,14 +66,14 @@
   text-decoration: none;
 }
 
-.home-jumbotron {
+/* .home-jumbotron {
   background-image: url(./images/abigail-keenan-8-s5QuUBtyM-unsplash.png);
   background-position: center bottom;
   background-size: cover;
   background-repeat: no-repeat;
-  /* padding: 5em 2em; */
+  padding: 5em 2em;
   padding: 10em 8em;
-}
+} */
 
 .home-page-container {
   background-image: linear-gradient(
