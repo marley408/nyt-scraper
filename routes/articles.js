@@ -6,7 +6,7 @@ const Article = require('../models/Article');
 const verify = require('./verifyToken');
 
 // A GET route for scraping the nytimes website
-router.get('/scrape', (req, res) => {
+router.get('/scrape', verify, (req, res) => {
   request('https://www.nytimes.com/section/sports', (error, response, html) => {
     if (!error && response.statusCode == 200) {
       const $ = cheerio.load(html);
@@ -19,7 +19,7 @@ router.get('/scrape', (req, res) => {
       $('.css-4jyr1y').each(function(i, element) {
         // Save the text of the element in a "title" constiable
         const title = $(element)
-          .find('.css-1dq8tca')
+          .find('.css-1j9dxys')
           .text()
           .trim();
 

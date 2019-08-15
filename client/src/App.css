@@ -1,9 +1,8 @@
 .landing-page-container {
-  /* background-image: url(./images/abigail-keenan-8-s5QuUBtyM-unsplash.png); */
   background-position: center bottom;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 5em 2em;
+  padding: 9em 6em;
   height: auto;
   background-image: linear-gradient(
     to top,
@@ -44,36 +43,10 @@
   padding: 1.5%;
   border: none;
   cursor: pointer;
-}
-.login-form-1 .btnSubmit {
+  background-color: rgb(204, 66, 66);
   font-weight: 600;
   color: #fff;
-  background-color: rgb(204, 66, 66);
 }
-.login-form-2 .btnSubmit {
-  font-weight: 600;
-  color: white;
-  background-color: rgb(204, 66, 66);
-}
-.login-form-2 .ForgetPwd {
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-}
-.login-form-1 .ForgetPwd {
-  color: #0062cc;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-/* .home-jumbotron {
-  background-image: url(./images/abigail-keenan-8-s5QuUBtyM-unsplash.png);
-  background-position: center bottom;
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding: 5em 2em;
-  padding: 10em 8em;
-} */
 
 .home-page-container {
   background-image: linear-gradient(

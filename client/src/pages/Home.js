@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import Navbar from '../components/Navbar';
 import { UserContext } from '../components/UserContext';
 import '../App.css';
+import { Redirect } from 'react-router';
 
 const Home = () => {
   const [articles, setArticles] = useState([]);
@@ -10,7 +11,11 @@ const Home = () => {
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const res = await fetch('/api/articles/scrape');
+      const res = await fetch('/api/articles/scrape', {
+        headers: {
+          'auth-token': localStorage.getItem('token')
+        }
+      });
       const data = await res.json();
 
       // console.log(res);
@@ -18,7 +23,7 @@ const Home = () => {
     };
 
     fetchArticles();
-  }, []);
+  }, [context.id]);
 
   const saveButton = async e => {
     e.preventDefault();
