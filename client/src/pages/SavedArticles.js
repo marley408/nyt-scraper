@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import Navbar from '../components/Navbar';
 import { UserContext } from '../components/UserContext';
 import '../App.css';
+import { Redirect } from 'react-router';
 
 const SavedArticles = () => {
   const [savedArticles, setSavedArticles] = useState([]);
@@ -46,7 +47,7 @@ const SavedArticles = () => {
     clickedArticle.remove();
   };
 
-  return (
+  return context.id ? (
     <div className="saved-page-container">
       <Navbar />
       <div className="card-container">
@@ -76,6 +77,8 @@ const SavedArticles = () => {
         )}
       </div>
     </div>
+  ) : (
+    <Redirect to="/" />
   );
 };
 

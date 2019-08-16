@@ -48,7 +48,7 @@ const Home = () => {
     clickedArticle.remove();
   };
 
-  return (
+  return context.id ? (
     <div className="home-page-container">
       <Navbar />
       <div className="card-container">
@@ -79,6 +79,8 @@ const Home = () => {
         })}
       </div>
     </div>
+  ) : (
+    <Redirect to="/" />
   );
 };
 
