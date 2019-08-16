@@ -6,12 +6,14 @@ import SavedArticles from './pages/SavedArticles';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { UserProvider } from './components/UserContext';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
     <UserProvider>
       <Router>
         <div className="App">
+          <Navbar />
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/home" component={Home} />

@@ -50,7 +50,7 @@ const Home = () => {
 
   return context.id ? (
     <div className="home-page-container">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="card-container">
         {articles.map((articles, index) => {
           return (
